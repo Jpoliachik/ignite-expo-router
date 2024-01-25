@@ -1,7 +1,7 @@
 import React, { ErrorInfo } from "react"
 import { ScrollView, TextStyle, View, ViewStyle } from "react-native"
-import { Button, Icon, Screen, Text } from "../../components"
-import { colors, spacing } from "../../theme"
+import { Button, Icon, Screen, Text } from "."
+import { colors, spacing } from "../theme"
 
 export interface ErrorDetailsProps {
   error: Error

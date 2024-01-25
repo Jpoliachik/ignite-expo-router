@@ -10,7 +10,7 @@ import { ArgType } from "reactotron-core-client"
 import { mst } from "reactotron-mst"
 
 import { clear } from "src/utils/storage"
-import { goBack, resetRoot, navigate } from "src/navigators/navigationUtilities"
+import { router } from "expo-router"
 
 import { Reactotron } from "./ReactotronClient"
 
@@ -67,23 +67,14 @@ reactotron.onCustomCommand({
   },
 })
 
-reactotron.onCustomCommand({
-  title: "Reset Navigation State",
-  description: "Resets the navigation state",
-  command: "resetNavigation",
-  handler: () => {
-    Reactotron.log("resetting navigation state")
-    resetRoot({ index: 0, routes: [] })
-  },
-})
-
 reactotron.onCustomCommand<[{ name: "route"; type: ArgType.String }]>({
   command: "navigateTo",
   handler: (args) => {
     const { route } = args ?? {}
     if (route) {
       Reactotron.log(`Navigating to: ${route}`)
-      navigate(route as any) // this should be tied to the navigator, but since this is for debugging, we can navigate to illegal routes
+      // @ts-ignore
+      router.push(route)
     } else {
       Reactotron.log("Could not navigate. No route provided.")
     }
@@ -99,7 +90,7 @@ reactotron.onCustomCommand({
   command: "goBack",
   handler: () => {
     Reactotron.log("Going back")
-    goBack()
+    router.back()
   },
 })
 

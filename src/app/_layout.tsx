@@ -12,7 +12,7 @@ if (__DEV__) {
   require("src/devtools/ReactotronConfig.ts")
 }
 
-export { ErrorBoundary } from "src/components/ErrorBoundary"
+export { ErrorBoundary } from "src/components/ErrorBoundary/ErrorBoundary"
 
 export default function Root() {
   // Wait for stores to load and render our layout inside of it so we have access
